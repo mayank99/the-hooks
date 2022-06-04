@@ -1,0 +1,17 @@
+{
+  "name": "use-css-transition-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev"
+  },
+  "devDependencies": {
+    "turbo": "^1.2.16",
+    "typescript": "^4.7.3"
+  }
+}

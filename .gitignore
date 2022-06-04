@@ -1,0 +1,19 @@
+# dependencies
+node_modules
+
+# build outputs
+dist
+build
+
+# package managers
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+
+# local env files
+.env.*
+
+# turbo
+.turbo
