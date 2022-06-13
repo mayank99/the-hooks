@@ -4,19 +4,35 @@ import './App.css';
 
 export const App = () => {
   const duration = 500;
-  const [isVisible, toggle] = React.useReducer((s) => !s, false);
-  const [state, ref] = useCSSTransition({ isVisible, duration });
+  const [isVisible, toggleIsVisible] = React.useReducer((s) => !s, false);
+
+  const ref = React.useRef<HTMLDivElement>(null);
 
   return (
     <main>
-      <button onClick={toggle}>Show</button>
-      {state != null && (
-        <div
-          ref={ref}
-          style={{ '--duration': `${duration}ms` }}
-          data-state={state}
-        />
-      )}
+      <button
+        onClick={() => {
+          if (!isVisible) {
+            toggleIsVisible();
+            queueMicrotask(() => {
+              ref.current?.animate(
+                { opacity: 1, transform: 'translateX(0)' },
+                { duration, fill: 'forwards' }
+              );
+            });
+          } else {
+            ref.current
+              ?.animate(
+                { opacity: 0, transform: 'translateX(100%)' },
+                { duration, fill: 'forwards' }
+              )
+              .finished.then(() => toggleIsVisible());
+          }
+        }}
+      >
+        Show
+      </button>
+      {isVisible && <div ref={ref} />}
     </main>
   );
 };

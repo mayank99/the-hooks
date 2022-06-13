@@ -19,17 +19,25 @@ button {
 }
 
 main > div {
+  --duration: 200ms;
   height: 200px;
   width: 200px;
   background-color: #f5f5f5;
   border-radius: 0.5rem;
-  transition: transform var(--duration) linear, opacity var(--duration) ease-in;
   transform: translateX(-100%);
   opacity: 0.5;
 }
 
-main > div[data-state='entering'],
-main > div[data-state='entered'] {
-  transform: translateX(0);
-  opacity: 1;
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-out {
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
