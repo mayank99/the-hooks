@@ -1,5 +1,5 @@
 {
-  "name": "use-css-transition",
+  "name": "@smol-hooks/use-animated-toggle",
   "version": "0.1.0",
   "description": "A hook based approach to react-transition-group",
   "type": "module",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "github.com/mayank99/use-css-transition"
+    "url": "github.com/mayank99/smol-hooks/packages/use-animated-toggle"
   },
   "author": "mayank99",
   "license": "MIT",

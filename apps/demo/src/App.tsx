@@ -1,37 +1,24 @@
 import * as React from 'react';
-import { useCSSTransition } from 'use-css-transition';
+import { useAnimatedToggle } from '@smol-hooks/use-animated-toggle';
 import './App.css';
 
 export const App = () => {
-  const duration = 500;
-  const [isVisible, toggleIsVisible] = React.useReducer((s) => !s, false);
-
   const ref = React.useRef<HTMLDivElement>(null);
+  const [isVisible, toggle] = useAnimatedToggle(ref, {
+    duration: 500,
+    enterKeyframes: [
+      { opacity: 0, transform: 'translateX(-100%)' },
+      { opacity: 1, transform: 'translateX(0)' },
+    ],
+    exitKeyframes: { opacity: 0, transform: 'translateX(100%)' },
+  });
 
   return (
     <main>
-      <button
-        onClick={() => {
-          if (!isVisible) {
-            toggleIsVisible();
-            queueMicrotask(() => {
-              ref.current?.animate(
-                { opacity: 1, transform: 'translateX(0)' },
-                { duration, fill: 'forwards' }
-              );
-            });
-          } else {
-            ref.current
-              ?.animate(
-                { opacity: 0, transform: 'translateX(100%)' },
-                { duration, fill: 'forwards' }
-              )
-              .finished.then(() => toggleIsVisible());
-          }
-        }}
-      >
-        Show
-      </button>
+      <h1>
+        <code>useAnimatedToggle</code> demo
+      </h1>
+      <button onClick={() => toggle()}>{!isVisible ? 'Show' : 'Hide'}</button>
       {isVisible && <div ref={ref} />}
     </main>
   );

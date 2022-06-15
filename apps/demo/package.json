@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "use-css-transition": "*"
+    "@smol-hooks/use-animated-toggle": "*"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
